@@ -26,4 +26,13 @@ x <- x %>%
 ggplot(x,aes(x=perc_red)) +
   geom_histogram(bins = 20, fill = "red")
 ```
-  
+
+```{r}
+urn <- tibble(bean_ID = 1:10000,
+              color = c(rep("red",2000), rep("white", 8000)))
+
+get_sample <- function(size) {
+  sample(urn, size, replace = F)
+}
+```
+
