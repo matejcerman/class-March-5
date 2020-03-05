@@ -1,0 +1,29 @@
+---
+title: "sampling"
+author: "Matej Cerman"
+date: "5 3 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(googlesheets4)
+library(janitor)
+library(tidyverse)
+```
+
+```{r data, include=FALSE}
+x <- read_sheet(ss = "14HmwN2cEVAJHupuehCuLdwG9BXtR3COrxDgaaylLhkA") %>% 
+  clean_names()
+
+```
+
+```{r}
+x <- x %>%
+  mutate(total = red + white) %>%
+  mutate(perc_red = red/(red+white))
+
+ggplot(x,aes(x=perc_red)) +
+  geom_histogram(bins = 20, fill = "red")
+```
+  
